@@ -1,4 +1,5 @@
 let score = 0;
+//Card images will not change until gameReady is equal to true.
 let gameReady = false;
 let url = "https://api.magicthegathering.io/v1/cards?supertypes=legendary&types=creature&colors=red";
 let card1 = document.getElementById("card1");
@@ -8,9 +9,13 @@ let card4 = document.getElementById("card4");
 let card5 = document.getElementById("card5");
 let card6 = document.getElementById("card6");
 let scoreNum = document.getElementById("score-num");
+let ready = document.getElementById("ready");
+//These three variables will hold the image url fetched from the MTG API.
+//These card images can be colors other than R, B, or G, but the colors make it easier for me to differentiate between them.
 let cardRed;
 let cardBlue;
 let cardGreen;
+//The prevCard object will contain the previous card clicked, as well as the function associated with that card.
 let prevCard = {
     previous: null,
     click: null
@@ -28,9 +33,9 @@ console.log(classArr)
 for(let i = 0; i < cardArr.length; i++) {
     cardArr[i].className = classArr[i];
 };
-console.log(card1.className, card2.className, card3.className, card4.className, card5.className, card6.className);
 scoreNum.innerText = `Score: ${score}`
 
+//Fetches three image urls from the MTGAPI.
 function fetchRandom() {
     fetch(url)
     .then(response=> response.json())
@@ -39,14 +44,27 @@ function fetchRandom() {
         cardRed = data.cards[Math.floor(Math.random() * data.cards.length)].imageUrl;
         cardBlue = data.cards[Math.floor(Math.random() * data.cards.length)].imageUrl;
         cardGreen = data.cards[Math.floor(Math.random() * data.cards.length)].imageUrl;
+        if(cardRed === undefined || cardRed === cardBlue || cardRed === cardGreen){
+            console.log("CardRed was undefined!")
+            cardRed = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=489504&type=card"
+        }
+        if(cardBlue === undefined || cardBlue === cardGreen || cardBlue === cardRed){
+            console.log("CardBlue was undefined!")
+            cardBlue = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=460980&type=card"
+        }
+        if(cardGreen === undefined || cardGreen === cardRed || cardGreen || cardBlue){
+            console.log("CardGreen was undefined!")
+            cardGreen = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=4566&type=card"
+        }
         console.log("RED: " + cardRed, "BLUE: " + cardBlue, cardBlue, "GREEN: " + cardGreen);
-        gameReady = true
+        gameReady = true;
+        ready.innerText = 'Ready!'
     })
 }
 fetchRandom()
-
+//These are the functions called when the card images are clicked.
+//The functions are called when the card of the corresponding number is clicked (For ex., clicking card1 will trigger cardClick1).
 function cardClick1() {
-    alert("i guess its workin b0ssman");
     if(gameReady === true){
     if(prevCard.previous === null) {
         prevCard.previous = card1;
@@ -77,16 +95,39 @@ function cardClick1() {
                 alert("Omfg!!???!! You're so smart, you win!!!!")
             }
         } else {
+            alert("Sorry pal, those don't match.");
+            //Event listeners are removed her while the user gets to look at the non-matching cards.
+            card1.removeEventListener("click", cardClick1);
+            card2.removeEventListener("click", cardClick2);
+            card3.removeEventListener("click", cardClick3);
+            card4.removeEventListener("click", cardClick4);
+            card5.removeEventListener("click", cardClick5);
+            card6.removeEventListener("click", cardClick6);
+        if (card1.className === "classRed") {
+            card1.src = cardRed
+        } else if (card1.className === "classBlue") {
+            card1.src = cardBlue
+        } else {
+            card1.src = cardGreen
+        }
+        setTimeout(()=> {
             prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            card1.src = "https://i.redd.it/qnnotlcehu731.jpg";
             prevCard.previous = null;
-            prevCard.click = null;
+        prevCard.click = null;
+        card1.addEventListener("click", cardClick1, false);
+        card2.addEventListener("click", cardClick2, false);
+        card3.addEventListener("click", cardClick3, false);
+        card4.addEventListener("click", cardClick4, false);
+        card5.addEventListener("click", cardClick5, false);
+        card6.addEventListener("click", cardClick6, false);
+        }, 3000);
         }
     }
     }
-}
+};
 
 function cardClick2() {
-    alert("i guess its workin b0ssman");
     if(gameReady === true){
     if(prevCard.previous === null) {
         prevCard.previous = card2;
@@ -117,16 +158,38 @@ function cardClick2() {
                 alert("Omfg!!???!! You're so smart, you win!!!!")
             }
         } else {
+            alert("Sorry pal, those don't match.");
+            card1.removeEventListener("click", cardClick1);
+            card2.removeEventListener("click", cardClick2);
+            card3.removeEventListener("click", cardClick3);
+            card4.removeEventListener("click", cardClick4);
+            card5.removeEventListener("click", cardClick5);
+            card6.removeEventListener("click", cardClick6);
+        if (card2.className === "classRed") {
+            card2.src = cardRed
+        } else if (card2.className === "classBlue") {
+            card2.src = cardBlue
+        } else {
+            card2.src = cardGreen
+        }
+        setTimeout(()=> {
             prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            card2.src = "https://i.redd.it/qnnotlcehu731.jpg";
             prevCard.previous = null;
-            prevCard.click = null;
+        prevCard.click = null;
+        card1.addEventListener("click", cardClick1, false);
+        card2.addEventListener("click", cardClick2, false);
+        card3.addEventListener("click", cardClick3, false);
+        card4.addEventListener("click", cardClick4, false);
+        card5.addEventListener("click", cardClick5, false);
+        card6.addEventListener("click", cardClick6, false);
+        }, 3000);
         }
     }
     }
-}
+};
 
 function cardClick3() {
-    alert("i guess its workin b0ssman");
     if(gameReady === true){
     if(prevCard.previous === null) {
         prevCard.previous = card3;
@@ -157,16 +220,37 @@ function cardClick3() {
                 alert("Omfg!!???!! You're so smart, you win!!!!")
             }
         } else {
-            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
-            prevCard.previous = null;
-            prevCard.click = null;
+            alert("Sorry pal, those don't match.");
+            card1.removeEventListener("click", cardClick1);
+            card2.removeEventListener("click", cardClick2);
+            card3.removeEventListener("click", cardClick3);
+            card4.removeEventListener("click", cardClick4);
+            card5.removeEventListener("click", cardClick5);
+            card6.removeEventListener("click", cardClick6);
+        if (card3.className === "classRed") {
+            card3.src = cardRed
+        } else if (card3.className === "classBlue") {
+            card3.src = cardBlue
+        } else {
+            card3.src = cardGreen
         }
+        setTimeout(()=> {
+            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            card3.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            prevCard.previous = null;
+        prevCard.click = null;
+        card1.addEventListener("click", cardClick1, false);
+        card2.addEventListener("click", cardClick2, false);
+        card3.addEventListener("click", cardClick3, false);
+        card4.addEventListener("click", cardClick4, false);
+        card5.addEventListener("click", cardClick5, false);
+        card6.addEventListener("click", cardClick6, false);
+        }, 3000);
     }
     }
-}
+}};
 
 function cardClick4() {
-    alert("i guess its workin b0ssman");
     if(gameReady === true){
     if(prevCard.previous === null) {
         prevCard.previous = card4;
@@ -197,22 +281,37 @@ function cardClick4() {
                 alert("Omfg!!???!! You're so smart, you win!!!!")
             }
         } else {
-            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
-            prevCard.previous = null;
-            prevCard.click = null;
+            alert("Sorry pal, those don't match.");
+            card1.removeEventListener("click", cardClick1);
+            card2.removeEventListener("click", cardClick2);
+            card3.removeEventListener("click", cardClick3);
+            card4.removeEventListener("click", cardClick4);
+            card5.removeEventListener("click", cardClick5);
+            card6.removeEventListener("click", cardClick6);
+        if (card4.className === "classRed") {
+            card4.src = cardRed
+        } else if (card4.className === "classBlue") {
+            card4.src = cardBlue
+        } else {
+            card4.src = cardGreen
         }
+        setTimeout(()=> {
+            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            card4.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            prevCard.previous = null;
+        prevCard.click = null;
+        card1.addEventListener("click", cardClick1, false);
+        card2.addEventListener("click", cardClick2, false);
+        card3.addEventListener("click", cardClick3, false);
+        card4.addEventListener("click", cardClick4, false);
+        card5.addEventListener("click", cardClick5, false);
+        card6.addEventListener("click", cardClick6, false);
+        }, 3000);
     }
     }
-}
-
-
-
-
-
-
+}};
 
 function cardClick5() {
-    alert("i guess its workin b0ssman");
     if(gameReady === true){
     if(prevCard.previous === null) {
         prevCard.previous = card5;
@@ -243,16 +342,37 @@ function cardClick5() {
                 alert("Omfg!!???!! You're so smart, you win!!!!")
             }
         } else {
-            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
-            prevCard.previous = null;
-            prevCard.click = null;
+            alert("Sorry pal, those don't match.");
+            card1.removeEventListener("click", cardClick1);
+            card2.removeEventListener("click", cardClick2);
+            card3.removeEventListener("click", cardClick3);
+            card4.removeEventListener("click", cardClick4);
+            card5.removeEventListener("click", cardClick5);
+            card6.removeEventListener("click", cardClick6);
+        if (card5.className === "classRed") {
+            card5.src = cardRed
+        } else if (card5.className === "classBlue") {
+            card5.src = cardBlue
+        } else {
+            card5.src = cardGreen
         }
+        setTimeout(()=> {
+            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            card5.src = "https://i.redd.it/qnnotlcehu731.jpg";
+            prevCard.previous = null;
+        prevCard.click = null;
+        card1.addEventListener("click", cardClick1, false);
+        card2.addEventListener("click", cardClick2, false);
+        card3.addEventListener("click", cardClick3, false);
+        card4.addEventListener("click", cardClick4, false);
+        card5.addEventListener("click", cardClick5, false);
+        card6.addEventListener("click", cardClick6, false);
+        }, 3000);
     }
     }
-}
+}};
 
 function cardClick6() {
-    alert("i guess its workin b0ssman");
     if(gameReady === true){
     if(prevCard.previous === null) {
         prevCard.previous = card6;
@@ -283,15 +403,36 @@ function cardClick6() {
                 alert("Omfg!!???!! You're so smart, you win!!!!")
             }
         } else {
-            prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
-            prevCard.previous = null;
-            prevCard.click = null;
+            alert("Sorry pal, those don't match.");
+            card1.removeEventListener("click", cardClick1);
+            card2.removeEventListener("click", cardClick2);
+            card3.removeEventListener("click", cardClick3);
+            card4.removeEventListener("click", cardClick4);
+            card5.removeEventListener("click", cardClick5);
+            card6.removeEventListener("click", cardClick6);
+            if (card6.className === "classRed") {
+                card6.src = cardRed
+            } else if (card6.className === "classBlue") {
+                card6.src = cardBlue
+            } else {
+                card6.src = cardGreen
+            }
+            setTimeout(()=> {
+                prevCard.previous.src = "https://i.redd.it/qnnotlcehu731.jpg";
+                card6.src = "https://i.redd.it/qnnotlcehu731.jpg";
+                prevCard.previous = null;
+                prevCard.click = null;
+                card1.addEventListener("click", cardClick1, false);
+                card2.addEventListener("click", cardClick2, false);
+                card3.addEventListener("click", cardClick3, false);
+                card4.addEventListener("click", cardClick4, false);
+                card5.addEventListener("click", cardClick5, false);
+                card6.addEventListener("click", cardClick6, false);
+            }, 3000);
         }
     }
     }
-}
-
-
+};
 
 console.log(prevCard)
 card1.addEventListener("click", cardClick1, false);
