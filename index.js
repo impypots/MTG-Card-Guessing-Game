@@ -52,7 +52,7 @@ function fetchRandom() {
             console.log("CardBlue was undefined!")
             cardBlue = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=460980&type=card"
         }
-        if(cardGreen === undefined || cardGreen === cardRed || cardGreen || cardBlue){
+        if(cardGreen === undefined || cardGreen === cardRed || cardGreen === cardBlue){
             console.log("CardGreen was undefined!")
             cardGreen = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=4566&type=card"
         }
