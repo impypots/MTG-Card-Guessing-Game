@@ -6,4 +6,4 @@
  Added a timeout to allow the player to see the cards chosen for a few seconds before reseting the card images, if their guess was incorrect. I also added a fallback image for each card image class if two of the image urls are identical or if there is no image url for one of the three particular cards that are randomly pulled.
 
  1/7/2021
- I added a couple of the best planeswalkers of MTG to the background, Soren and Elspeth! Also, just generally made the UI look a bit more pleasant.
+ I added a couple of the best planeswalkers of MTG to the background, Sorin and Elspeth! Also, just generally made the UI look a bit more pleasant.
