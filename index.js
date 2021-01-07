@@ -92,7 +92,7 @@ function cardClick1() {
             prevCard.previous = null;
             prevCard.click = null;
             if(score >= 3){
-                alert("Omfg!!???!! You're so smart, you win!!!!")
+                alert("Omg!!???!! You're so smart, you win!!!!")
             }
         } else {
             alert("Sorry pal, those don't match.");
@@ -155,7 +155,7 @@ function cardClick2() {
             prevCard.previous = null;
             prevCard.click = null;
             if(score >= 3){
-                alert("Omfg!!???!! You're so smart, you win!!!!")
+                alert("Omg!!???!! You're so smart, you win!!!!")
             }
         } else {
             alert("Sorry pal, those don't match.");
@@ -217,7 +217,7 @@ function cardClick3() {
             prevCard.previous = null;
             prevCard.click = null;
             if(score >= 3){
-                alert("Omfg!!???!! You're so smart, you win!!!!")
+                alert("Omg!!???!! You're so smart, you win!!!!")
             }
         } else {
             alert("Sorry pal, those don't match.");
@@ -278,7 +278,7 @@ function cardClick4() {
             prevCard.previous = null;
             prevCard.click = null;
             if(score >= 3){
-                alert("Omfg!!???!! You're so smart, you win!!!!")
+                alert("Omg!!???!! You're so smart, you win!!!!")
             }
         } else {
             alert("Sorry pal, those don't match.");
@@ -339,7 +339,7 @@ function cardClick5() {
             prevCard.previous = null;
             prevCard.click = null;
             if(score >= 3){
-                alert("Omfg!!???!! You're so smart, you win!!!!")
+                alert("Omg!!???!! You're so smart, you win!!!!")
             }
         } else {
             alert("Sorry pal, those don't match.");
@@ -400,7 +400,7 @@ function cardClick6() {
             prevCard.previous = null;
             prevCard.click = null;
             if(score >= 3){
-                alert("Omfg!!???!! You're so smart, you win!!!!")
+                alert("Omg!!???!! You're so smart, you win!!!!")
             }
         } else {
             alert("Sorry pal, those don't match.");
